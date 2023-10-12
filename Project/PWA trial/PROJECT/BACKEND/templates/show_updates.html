@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<title>Flask sse quickstart</title>
+
+    </head>
+    <body>
+        Flask sse quickstart
+        <script>
+           var source=new EventSource("{{url_for('sse.stream')}}");
+           source.addEventListener('greeting', function(event){
+            var data=JSON.parse(event.data);
+            alert('The server says' + data.message);
+           }, false);
+           source.addEventListener('error', function(error){
+            alert('Error');
+           }, false)
+        </script>
+
+    </body>
+</html>

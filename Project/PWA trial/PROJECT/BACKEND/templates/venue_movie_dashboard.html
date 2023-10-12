@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GrabMyTickets</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/admin_logout">GrabMyTickets</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " href="/admin_dashboard">Admin Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/venues_popularity-chart">Popularity chart</a>
+              </li>
+              
+              
+            </ul>
+            <form class="d-flex" action="{{ url_for('venue_movie_dashboard', venue_id=venue.venue_id) }}" method="GET">
+              <input class="form-control me-2" type="search" placeholder="Search for movies" aria-label="Search" name="search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+                <a href='/user_login'><button class="btn btn-primary" type="submit">User Login</button></a>
+                <a href='/admin_logout'><button class="btn btn-primary" type="submit">Admin Logout</button></a>
+            
+          </div>
+        </div>
+      </nav>
+      <div class="container px-4 px-lg-5 float-start">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div >
+                <h1>{{venue.name}}</h1>
+                <h1>Movies</h1>
+                <a href="/edit_movie/{{venue.venue_id}}/0"><button>Add a new movie</button></a>
+                
+                <table class="table1" text-align="center">
+                    <thead>
+                      <tr>
+                        <th scope="col">SNo</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Language</th>
+                        <th scope="col">Runtime</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Director</th>
+                        <th scope="col" width="600px" text-align="center">Synopsis</th>
+                        <th scope="col">Release date</th>
+                        <th scope="col">Trailer URL</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Seats Available</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for movie_venue_obj in movie_venue_objs %}
+
+                      <tr>
+                        
+                        <td>{{movie_venue_obj.movie.movie_id}}</td>
+                        <td>{{movie_venue_obj.movie.title}}</td>
+                        <td>{{movie_venue_obj.movie.genre}}</td>
+                        <td>{{movie_venue_obj.movie.language}}</td>
+                        <td>{{movie_venue_obj.movie.runtime}}</td>
+                        <td>{{movie_venue_obj.movie.rating}}</td>
+                        <td>{{movie_venue_obj.movie.director}}</td>
+                        <td style="width: 600px">{{movie_venue_obj.movie.synopsis}}</td>
+                        <td>{{movie_venue_obj.movie.release_date}}</td>
+                        <td>{{movie_venue_obj.movie.trailer_url}}</td>
+                        <td>{{movie_venue_obj.price}}</td>
+                        <td>{{movie_venue_obj.date}}</td>
+                        <td>{{movie_venue_obj.time}}</td>
+                        <td>{{movie_venue_obj.seats_available}}</td>
+                        <td><a href="{{ url_for('edit_movie', venue_id=movie_venue_obj.venue.venue_id, movie_id=movie_venue_obj.movie.movie_id) }}">Edit</a></td>
+                        <td><a href="{{ url_for('confirm_delete_movie', venue_id=movie_venue_obj.venue.venue_id, movie_id=movie_venue_obj.movie.movie_id) }}">Delete</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+                
+
+        
+            </div>
+        </div>
+    </div>
+
+
+    </body>
+    </html> 

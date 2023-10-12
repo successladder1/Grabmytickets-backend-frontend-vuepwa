@@ -1,0 +1,682 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: GrabMyTickets - OpenAPI for CRUD on venues and movies 3.0
+  description: >-
+    This is GrabMyTickets API based on the OpenAPI 3.0 specification.  
+
+    <img
+    src="https://mermaid.ink/img/pako:eNqNU8FqxCAQ_RXxvLsfkHOvPRV6CoRBJ65gNIzjQgj592qyJV20pXowvveYzLwZV6mCRtlJpDcLhmDqvcjrPTwsii3cbmEVU7kMD_QJRSd6mfcpWo_vsqxnNEhPvdUnE5msN0KwZYcVbNBTjTrwJoGpCUqe7dTAgfNRwdoSKg5U69EhRBw0cB0sLj7M0caKYALrkIZE7uC24_jc7dnC9fqHY7uo4diubDnmoVEoaE0Y69SU5aUuhFvlqZBNpKXORMEMzTjzPfg6Dk7Zjd6_OPGz-H9Nx-8ujC4Ai5msQlHrXxv3jZ6zscmLnJByijpP-J5KL_mOmZelKxpHSI5Lc4oUEoePxSvZMSW8yDSXHzyfhexGcBG3L40b_2g?type=png"
+    />
+servers:
+    - url: http://127.0.0.1:5000
+tags:
+  - name: Venue
+    description: Everything about your Venues
+  - name: Movie
+    description: Everything about your Movies
+paths:
+  /api/edit/{venue_id}:
+    get:
+      tags:
+        - Venue
+      summary: Add a new Venue
+      description: Add a new Venue
+      operationId: getVenue
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                title: venue object
+                type: object
+                properties:
+                  venue_id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Delight
+                  capacity:
+                    type: integer
+                    example: 200
+                  city:
+                    type: string
+                    example: New Delhi
+                  state:
+                    type: string
+                    example: Delhi
+                  country:
+                    type: string
+                    example: India
+                  phone:
+                    type: string
+                    example: 011546255
+                  email:
+                    type: string
+                    example: deligh@gmail.com
+        '404':
+          description: Not found error
+
+    delete:
+      tags:
+        - Venue
+      summary: Delete an existing Venue
+      description: Delete an existing Venue by Id
+      operationId: deleteVenue
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                title: venue object
+                type: object
+                properties:
+                  venue_id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Delight
+                  capacity:
+                    type: integer
+                    example: 200
+                  city:
+                    type: string
+                    example: New Delhi
+                  state:
+                    type: string
+                    example: Delhi
+                  country:
+                    type: string
+                    example: India
+                  phone:
+                    type: string
+                    example: 011546255
+                  email:
+                    type: string
+                    example: deligh@gmail.com
+        '400':
+          description: Validation error
+
+
+    put:
+      tags:
+        - Venue
+      summary: Add a new Venue
+      description: Add a new Venue
+      operationId: updateVenue
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        description: Post venue details
+        required: true
+        content:
+          application/json:
+            schema:
+                title: venue object
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Delight
+                  capacity:
+                    type: integer
+                    example: 200
+                  city:
+                    type: string
+                    example: New Delhi
+                  state:
+                    type: string
+                    example: Delhi
+                  country:
+                    type: string
+                    example: India
+                  phone:
+                    type: string
+                    example: 011546255
+                  email:
+                    type: string
+                    example: deligh@gmail.com
+                  address:
+                    type: string
+                    example: APIII
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                title: venue object
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Delight
+                  capacity:
+                    type: integer
+                    example: 200
+                  city:
+                    type: string
+                    example: New Delhi
+                  state:
+                    type: string
+                    example: Delhi
+                  country:
+                    type: string
+                    example: India
+                  phone:
+                    type: string
+                    example: 011546255
+                  email:
+                    type: string
+                    example: deligh@gmail.com
+                  address:
+                    type: string
+                    example: APIII
+        '404':
+          description: not found error
+        '400':
+          description: Invalid request
+
+  /api/edit/0:
+    post:
+      tags:
+        - Venue
+      summary: Add a new Venue
+      description: Add a new Venue
+      operationId: addVenue
+      requestBody:
+        description: Post venue details
+        required: true
+        content:
+          application/json:
+            schema:
+                title: venue object
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Delight
+                  capacity:
+                    type: integer
+                    example: 200
+                  city:
+                    type: string
+                    example: New Delhi
+                  state:
+                    type: string
+                    example: Delhi
+                  country:
+                    type: string
+                    example: India
+                  phone:
+                    type: string
+                    example: 011546255
+                  email:
+                    type: string
+                    example: deligh@gmail.com
+                  address:
+                    type: string
+                    example: APIII
+      responses:
+        '201':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                title: venue object
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Delight
+                  capacity:
+                    type: integer
+                    example: 200
+                  city:
+                    type: string
+                    example: New Delhi
+                  state:
+                    type: string
+                    example: Delhi
+                  country:
+                    type: string
+                    example: India
+                  phone:
+                    type: string
+                    example: 011546255
+                  email:
+                    type: string
+                    example: deligh@gmail.com
+                  address:
+                    type: string
+                    example: APIII
+        '400':
+          description: ValidationError
+
+  /api/edit_movie/{venue_id}/{movie_id}:
+    get:
+      tags:
+        - Movie
+      summary: GET a movie in a Venue
+      description: Get a movie in a venue
+      operationId: getMovie
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+        - in: path
+          name: movie_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                title: movie object
+                type: object
+                properties:
+                  movie_id:
+                    type: integer
+                    example: 1
+                  "title":
+                    type: string
+                    example: Conjuring
+                  runtime:
+                    type: string
+                    example: 2
+                  genre:
+                    type: string
+                    example: horror
+                  language:
+                    type: string
+                    example: english
+                  rating:
+                    type: string
+                    example: PG13
+                  director:
+                    type: string
+                    example: Kapil
+                  synopsis:
+                    type: string
+                    example: This is a horror movie
+                  release_date:
+                    type: string
+                    example: march92023
+                  trailer_url:
+                    type: string
+                    example: fnjnfurl
+                  price :
+                    type: integer
+                    example: 200
+                  date: 
+                    type: string
+                    example : 2 March 2023
+                  time :
+                    type: string
+                    example: 23:04:2023 15:16:00
+                  create_date:
+                    type: string
+                    example: 25 March 2023
+                  seats_available:
+                    type: integer
+                    example: 5
+        '404':
+          description: notfounderror
+
+    delete:
+      tags:
+        - Movie
+      summary: Delete an existing Movie in venue venue_id
+      description: Delete an existing Movie in venue venue_id by movie_id
+      operationId: deleteMovie
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+        - in: path
+          name: movie_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                title: movie object
+                type: object
+                properties:
+                  movie_id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: Conjuring
+                  runtime:
+                    type: integer
+                    example: 2
+                  genre:
+                    type: string
+                    example: horror
+                  language:
+                    type: string
+                    example: english
+                  rating:
+                    type: string
+                    example: PG13
+                  director:
+                    type: string
+                    example: Kapil
+                  synpsis:
+                    type: string
+                    example: This is a horror movie
+                  release_date:
+                    type: string
+                    example: march92023
+                  trailer_url:
+                    type: string
+                    example: fnjnfurl
+                  price:
+                    type: integer
+                    example: 200
+                  seats_available:
+                    type: integer
+                    example: 3
+                  date:
+                    type: string
+                    example: 4 march
+                  time:
+                    type: string
+                    example: 4 am
+                  create_date:
+                    type: string
+                    example: 4 march
+        '400':
+          description: Invalid venue_id or movie_id
+
+    put:
+      tags:
+        - Movie
+      summary: Update a Movie in venue venue_id
+      description: Update a Movie in venue venue_id
+      operationId: editMovie
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+        - in: path
+          name: movie_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        description: Movie details inside a venue 
+        required: true
+        content:
+          application/json:
+            schema:
+                title: movie object
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: Conjuring
+                  runtime:
+                    type: integer
+                    example: 2
+                  genre:
+                    type: string
+                    example: horror
+                  language:
+                    type: string
+                    example: english
+                  rating:
+                    type: string
+                    example: PG13
+                  director:
+                    type: string
+                    example: Kapil
+                  synopsis:
+                    type: string
+                    example: This is a horror movie
+                  release_date:
+                    type: string
+                    example: march92023
+                  trailer_url:
+                    type: string
+                    example: fnjnf.url
+                  price:
+                    type: integer
+                    example: 200
+                  seats_available:
+                    type: integer
+                    example: 3
+                  date:
+                    type: string
+                    example: 4 march
+                  time:
+                    type: string
+                    example: 4 am
+                  create_date:
+                    type: string
+                    example: 4 march
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                title: movie object
+                type: object
+                properties:
+                  movie_id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: Conjuring
+                  runtime:
+                    type: integer
+                    example: 2
+                  genre:
+                    type: string
+                    example: horror
+                  language:
+                    type: string
+                    example: english
+                  rating:
+                    type: string
+                    example: PG13
+                  director:
+                    type: string
+                    example: Kapil
+                  synopsis:
+                    type: string
+                    example: This is a horror movie
+                  release_date:
+                    type: string
+                    example: march92023
+                  trailer_url:
+                    type: string
+                    example: fnjnfurl
+                  price:
+                    type: integer
+                    example: 200
+                  seats_available:
+                    type: integer
+                    example: 3
+                  date:
+                    type: string
+                    example: 4 march
+                  time:
+                    type: string
+                    example: "23:04:2022 15:16:00"
+                  create_date:
+                    type: string
+                    example: 4 march
+        '400':
+          description: Invalid venue id
+        '404':
+          description: movie not found
+  /api/edit_movie/{venue_id}/0:
+    post:
+      tags:
+        - Movie
+      summary: Add a new Movie in venue venue_id
+      description: Add a new Movie in venue venue_id
+      operationId: addMovie
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        description: Movie details inside a venue 
+        required: true
+        content:
+          application/json:
+            schema:
+                title: movie object
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: Conjuring
+                  runtime:
+                    type: integer
+                    example: 2
+                  genre:
+                    type: string
+                    example: horror
+                  language:
+                    type: string
+                    example: english
+                  rating:
+                    type: string
+                    example: PG13
+                  director:
+                    type: string
+                    example: Kapil
+                  synopsis:
+                    type: string
+                    example: This is a horror movie
+                  release_date:
+                    type: string
+                    example: march92023
+                  trailer_url:
+                    type: string
+                    example: fnjnf.url
+                  price:
+                    type: integer
+                    example: 200
+                  seats_available:
+                    type: integer
+                    example: 3
+                  date:
+                    type: string
+                    example: 4 march
+                  time:
+                    type: string
+                    example: "23:04:2022 15:16:00"
+                  create_date:
+                    type: string
+                    example: 4 march
+      responses:
+        '201':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                title: movie object
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: Conjuring
+                  runtime:
+                    type: integer
+                    example: 2
+                  genre:
+                    type: string
+                    example: horror
+                  language:
+                    type: string
+                    example: english
+                  rating:
+                    type: string
+                    example: PG13
+                  director:
+                    type: string
+                    example: Kapil
+                  synopsis:
+                    type: string
+                    example: This is a horror movie
+                  release_date:
+                    type: string
+                    example: march92023
+                  trailer_url:
+                    type: string
+                    example: fnjnfurl
+                  price:
+                    type: integer
+                    example: 200
+                  seats_available:
+                    type: integer
+                    example: 3
+                  date:
+                    type: string
+                    example: 4 march
+                  time:
+                    type: string
+                    example: "23:04:2022 15:16:00"
+                  create_date:
+                    type: string
+                    example: 4 march
+        '400':
+          description: ValidationError
+
+      
+              
+
+

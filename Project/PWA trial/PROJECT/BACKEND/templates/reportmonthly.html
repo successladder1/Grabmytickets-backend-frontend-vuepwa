@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Message html template</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+            }
+
+            h1 {
+                color: #6A0DAD;
+            }
+
+            p {
+                margin-bottom: 10px;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            li {
+                margin-bottom: 20px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                background-color: #F4F0FE;
+            }
+
+            strong {
+                color: #6A0DAD;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Monthly Entertainment report</h1>
+        <p>Dear {{data.username}}</p>
+        <p>Here is your monthly entertainment report!.</p>
+        <ul>
+            {% if bookings %}
+            {% for booking in bookings %}
+                <li>
+                    <strong>Venue :</strong> {{ booking.venue.name }}<br>
+                    <strong>Movie :</strong> {{ booking.movie.title }}<br>
+                    <strong>Number of Tickets:</strong> {{ booking.num_of_tickets }}<br>
+                    <strong>Price Paid:</strong> {{ booking.price }}<br>
+                    <strong>Price of show:</strong> {{ booking.movie_venue.price }}<br>
+                    <strong>Showtime</strong> {{ booking.movie_venue.time }}<br>
+                    <strong>Booking Date:</strong> {{ booking.create_date }}<br>
+                </li>
+            {% endfor %}
+            {% else %}
+          <p>No bookings yet.</p>
+          {% endif %}
+        </ul>
+    </body>
+</html>

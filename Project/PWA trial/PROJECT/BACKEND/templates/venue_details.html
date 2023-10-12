@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GrabMyTickets</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/user_logout">GrabMyTickets</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " href="/user_dashboard/{{user.user_id}}">{{user.username}}'s Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a href="/bookings/{{user.user_id}}" class="nav-link ">{{user.username}}'s Bookings</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search" method="POST" action="{{ url_for('search_results', user_id=user.user_id) }}">
+              
+              <div class="input-group">
+                <input class="form-control me-2" type="search" placeholder="Search ...." aria-label="Search" name="query">
+                <div class="input-group-append">
+                <select class="form-select" name="category">
+                  <option value="venue">Venue</option>
+                  <option value="movie">Movie</option>
+                </select>
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+          </div>
+            </form>
+                <a href='/user_logout'><button class="btn btn-primary" type="submit">Logout {{user.username}}</button></a>
+                <a href='/admin_login'><button class="btn btn-primary" type="submit">Admin Login</button></a>
+          </div>
+        </div>
+      </nav>
+
+      <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+            <h5 >{{ venue.name }}</h5></a>
+            <p>Address : {{ venue.address }}</p>
+            <p>City : {{ venue.city }}</p>
+            <p>State : {{ venue.state }}</p>
+            <p>Country : {{ venue.country }}</p>
+            <p>Capacity : {{ venue.capacity }}</p>
+            <p>Phone : {{ venue.phone }}</p>
+            <p>Email : {{ venue.email }}</p>
+          <p class="card-text">Shows:</p>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          {% if movies %}
+          {% for movie , mv_object in movies %}
+            <div class="card w-50">
+              <div class="card-body">
+                <h5 class="card-title">{{ movie.title }}</h5>
+                <h5>Release date : {{ movie.release_date }}</h5>
+                <h5>Showtime : {{ mv_object.time }}</h5>
+                <h5>Genre : {{ movie.genre }}</h5>
+                <h5>Runtime : {{ movie.runtime }}</h5>
+                <p>Language : {{ movie.language }}</p>
+                <p>Rating : {{ movie.rating }}</p>
+                <p>Price of ticket : {{ mv_object.price }}</p>
+                <p>Number of seats available : {{ mv_object.seats_available }}</p>
+                <p class="card-text">{{ movie.synopsis }}</p>
+                <p> Director: {{ movie.director }}</p>
+
+                <a href="/book_tickets/{{user.user_id}}/{{venue.venue_id}}/{{movie.movie_id}}" class="btn btn-primary">Book</a>
+              </div>
+            </div>
+            {% else %}
+            <p>No movies found</p>
+            {% endfor %}
+          {% endif %}
+</div>
+</body>
+</html>        
